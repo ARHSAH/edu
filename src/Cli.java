@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Cli {
@@ -7,7 +8,9 @@ public class Cli {
     ArrayList<course> languageStructure = new ArrayList<course>();
     ArrayList<course> Chemistry = new ArrayList<course>();
 
-    int registerd;
+    ArrayList<Integer> registeredStudentsNo = new ArrayList<>();
+    ArrayList<course> registeredStudentsCourses = new ArrayList<>();
+
     Scanner scanner;
 
     public Cli() {
@@ -123,105 +126,39 @@ public class Cli {
     }
 
     public void welcome() {
-        System.out.println("student or admin?");
+        System.out.println("welcome to edu how do you want to enter? :");
+        System.out.println("1.admin");
+        System.out.println("2.student");
         String welcome1 = scanner.next();
-        if (welcome1.equals("admin")) {
+        if (welcome1.equals("1")) {
             adminChoose();
+        }
+        if (welcome1.equals("2")) {
+            getStudentId();
         }
     }
 
+
+
     public void adminChoose() {
         System.out.println("choose which faculty :");
-        System.out.println("computerScience " + "Physic " + "languageStructure " + "Chemistry");
+        System.out.println("1.computerScience " + "2.Physic " + "3.languageStructure " + "4.Chemistry" +
+                " 5.back");
         String faculty = scanner.next();
-        if (faculty.equals("computerScience")) {
-            for (int i = 0; i < computerScience.size(); i++) {
-                System.out.print("code : " + computerScience.get(i).code + " /");
-                System.out.print("unit : " + computerScience.get(i).unit + " /");
-                System.out.print("courseName : " + computerScience.get(i).courseName + " /");
-                System.out.print("capacity :" + computerScience.get(i).capacity + " /");
-                System.out.print("registerd : " + registerd + " /");
-                System.out.print("master : " + computerScience.get(i).masterName + " /");
-                System.out.print("exam : " +
-                        computerScience.get(i).examDay + " " +
-                        computerScience.get(i).examStart + " to " +
-                        computerScience.get(i).examFinish + " /");
-                System.out.print("Weekly Schedule : " +
-                        computerScience.get(i).classDay + " " +
-                        computerScience.get(i).classStart + " to " +
-                        computerScience.get(i).classFinish + " ");
-                System.out.println();
+        if (faculty.equals("1") || faculty.equals("computerScience")) {
+            printingInfo(computerScience);
+            adminAddOrDetails(computerScience);
+        } else if (faculty.equals("2") || faculty.equals("Physic")) {
+            printingInfo(Physic);
+            adminAddOrDetails(Physic);
+        } else if (faculty.equals("3") || faculty.equals("languageStructure")) {
+            printingInfo(languageStructure);
+            adminAddOrDetails(languageStructure);
+        } else if (faculty.equals("4") || faculty.equals("Chemistry") ) {
+            printingInfo(Chemistry);
+            adminAddOrDetails(Chemistry);
 
-
-            }
-
-            adminAddOrDetails("computerScience");
-        } else if (faculty.equals("Physic")) {
-            for (int i = 0; i < Physic.size(); i++) {
-                System.out.print("code : " + Physic.get(i).code + " /");
-                System.out.print("unit : " + Physic.get(i).unit + " /");
-                System.out.print("courseName : " + Physic.get(i).courseName + " /");
-                System.out.print("capacity :" + Physic.get(i).capacity + " /");
-                System.out.print("registerd : " + registerd + " /");
-                System.out.print("master : " + Physic.get(i).masterName + " /");
-                System.out.print("exam : " +
-                        Physic.get(i).examDay + " " +
-                        Physic.get(i).examStart + " to " +
-                        Physic.get(i).examFinish + " /");
-                System.out.print("Weekly Schedule : " +
-                        Physic.get(i).classDay + " " +
-                        Physic.get(i).classStart + " to " +
-                        Physic.get(i).classFinish + " ");
-                System.out.println();
-            }
-
-            adminAddOrDetails("Physic");
-        } else if (faculty.equals("languageStructure")) {
-            for (int i = 0; i < languageStructure.size(); i++) {
-                System.out.print("code : " + languageStructure.get(i).code + " /");
-                System.out.print("unit : " + languageStructure.get(i).unit + " /");
-                System.out.print("courseName : " + languageStructure.get(i).courseName + " /");
-                System.out.print("capacity :" + languageStructure.get(i).capacity + " /");
-                System.out.print("registerd : " + registerd + " /");
-                System.out.print("master : " + languageStructure.get(i).masterName + " /");
-                System.out.print("exam : " +
-                        languageStructure.get(i).examDay + " " +
-                        languageStructure.get(i).examStart + " to " +
-                        languageStructure.get(i).examFinish + " /");
-                System.out.print("Weekly Schedule : " +
-                        languageStructure.get(i).classDay + " " +
-                        languageStructure.get(i).classStart + " to " +
-                        languageStructure.get(i).classFinish + " ");
-                System.out.println();
-
-
-            }
-
-            adminAddOrDetails("languageStructure");
-        } else if (faculty.equals("Chemistry")) {
-            for (int i = 0; i < Chemistry.size(); i++) {
-                System.out.print("code : " + Chemistry.get(i).code + " /");
-                System.out.print("unit : " + Chemistry.get(i).unit + " /");
-                System.out.print("courseName : " + Chemistry.get(i).courseName + " /");
-                System.out.print("capacity :" + Chemistry.get(i).capacity + " /");
-                System.out.print("registerd : " + registerd + " /");
-                System.out.print("master : " + Chemistry.get(i).masterName + " /");
-                System.out.print("exam : " +
-                        Chemistry.get(i).examDay + " " +
-                        Chemistry.get(i).examStart + " to " +
-                        Chemistry.get(i).examFinish + " /");
-                System.out.print("Weekly Schedule : " +
-                        Chemistry.get(i).classDay + " " +
-                        Chemistry.get(i).classStart + " to " +
-                        Chemistry.get(i).classFinish + " ");
-                System.out.println();
-
-
-            }
-
-            adminAddOrDetails("Chemistry");
-
-        } else if (faculty.equals("back")) {
+        } else if (faculty.equals("5") || faculty.equals("back")) {
             welcome();
         } else {
             System.out.println("Sorry there is no such course ");
@@ -229,253 +166,254 @@ public class Cli {
         }
     }
 
-    public void adminAddOrDetails(String course1) {
-        System.out.println("Add course or select course to review details :");
+    public void adminAddOrDetails(ArrayList<course> faculty) {
+        System.out.println("1.Add course ");
+        System.out.println("2.Select course to review details ");
+        System.out.println("3.back");
         String addOrReview = scanner.next();
 
-        if (addOrReview.equals("add")) {
-            if (course1.equals("computerScience")) {
-                System.out.print("courseName : ");
-                String courseName = scanner.next();
-                System.out.print("masterName : ");
-                String masterName = scanner.next();
-                System.out.print("code : ");
-                int code = scanner.nextInt();
-                System.out.print("capacity : ");
-                int capacity = scanner.nextInt();
-                System.out.print("unit : ");
-                int unit = scanner.nextInt();
-                System.out.print("classDay : ");
-                String classDay = scanner.next();
-                System.out.print("classStart : ");
-                double classStart = scanner.nextDouble();
-                System.out.print("classFinish : ");
-                double classFinish = scanner.nextDouble();
-                System.out.print("examDay : ");
-                String examDay = scanner.next();
-                System.out.print("examStart : ");
-                double examStart = scanner.nextDouble();
-                System.out.print("examFinish : ");
-                double examFinish = scanner.nextDouble();
-                System.out.print("general : ");
-                boolean general = scanner.nextBoolean();
-                if (general) {
-                    generalCourse course = new generalCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    computerScience.add(course);
-                } else {
-                    specializedCourse course = new specializedCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    computerScience.add(course);
-                }
-                System.out.println("Ok successfully added now what you wanna do ?");
-                System.out.print("back  " + "start");
-                String option1 = scanner.next();
-                if (option1.equals("back")) {
-                    adminChoose();
-                }
-                if (option1.equals("start")) {
-                    welcome();
-                }
+        if (addOrReview.equals("add") || addOrReview.equals("1")) {
+            System.out.print("courseName : ");
+            String courseName = scanner.next();
+            System.out.print("masterName : ");
+            String masterName = scanner.next();
+            System.out.print("code : ");
+            int code = scanner.nextInt();
+            System.out.print("capacity : ");
+            int capacity = scanner.nextInt();
+            System.out.print("unit : ");
+            int unit = scanner.nextInt();
+            System.out.print("classDay : ");
+            String classDay = scanner.next();
+            System.out.print("classStart : ");
+            double classStart = scanner.nextDouble();
+            System.out.print("classFinish : ");
+            double classFinish = scanner.nextDouble();
+            System.out.print("examDay : ");
+            String examDay = scanner.next();
+            System.out.print("examStart : ");
+            double examStart = scanner.nextDouble();
+            System.out.print("examFinish : ");
+            double examFinish = scanner.nextDouble();
+            System.out.print("general : ");
+            boolean general = scanner.nextBoolean();
+            if (general) {
+                generalCourse course = new generalCourse(
+                        courseName
+                        , masterName,
+                        code, capacity, unit, classDay,
+                        classStart, classFinish, examDay,
+                        examStart, examFinish);
+                faculty.add(course);
+            } else {
+                specializedCourse course = new specializedCourse(
+                        courseName
+                        , masterName,
+                        code, capacity, unit, classDay,
+                        classStart, classFinish, examDay,
+                        examStart, examFinish);
+                faculty.add(course);
             }
-            if (course1.equals("Physic")) {
-                System.out.print("courseName : ");
-                String courseName = scanner.next();
-                System.out.print("masterName : ");
-                String masterName = scanner.next();
-                System.out.print("code : ");
-                int code = scanner.nextInt();
-                System.out.print("capacity : ");
-                int capacity = scanner.nextInt();
-                System.out.print("unit : ");
-                int unit = scanner.nextInt();
-                System.out.print("classDay : ");
-                String classDay = scanner.next();
-                System.out.print("classStart : ");
-                double classStart = scanner.nextDouble();
-                System.out.print("classFinish : ");
-                double classFinish = scanner.nextDouble();
-                System.out.print("examDay : ");
-                String examDay = scanner.next();
-                System.out.print("examStart : ");
-                double examStart = scanner.nextDouble();
-                System.out.print("examFinish : ");
-                double examFinish = scanner.nextDouble();
-                System.out.print("general : ");
-                boolean general = scanner.nextBoolean();
-                if (general) {
-                    generalCourse course = new generalCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    Physic.add(course);
-                } else {
-                    specializedCourse course = new specializedCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    Physic.add(course);
-                }
-                System.out.println("Ok successfully added now what you wanna do ?");
-                System.out.print("back  " + "start");
-                String option1 = scanner.next();
-                if (option1.equals("back")) {
-                    adminChoose();
-                }
-                if (option1.equals("start")) {
-                    welcome();
-                }
+            System.out.println("Ok successfully added now what you wanna do ?");
+            System.out.print("1.finish  " + "2.back");
+            String option1 = scanner.next();
+            if (option1.equals("1")) {
+                welcome();
             }
-            if (course1.equals("languageStructure")) {
-                System.out.print("courseName : ");
-                String courseName = scanner.next();
-                System.out.print("masterName : ");
-                String masterName = scanner.next();
-                System.out.print("code : ");
-                int code = scanner.nextInt();
-                System.out.print("capacity : ");
-                int capacity = scanner.nextInt();
-                System.out.print("unit : ");
-                int unit = scanner.nextInt();
-                System.out.print("classDay : ");
-                String classDay = scanner.next();
-                System.out.print("classStart : ");
-                double classStart = scanner.nextDouble();
-                System.out.print("classFinish : ");
-                double classFinish = scanner.nextDouble();
-                System.out.print("examDay : ");
-                String examDay = scanner.next();
-                System.out.print("examStart : ");
-                double examStart = scanner.nextDouble();
-                System.out.print("examFinish : ");
-                double examFinish = scanner.nextDouble();
-                System.out.print("general : ");
-                boolean general = scanner.nextBoolean();
-                if (general) {
-                    generalCourse course = new generalCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    languageStructure.add(course);
-                } else {
-                    specializedCourse course = new specializedCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    languageStructure.add(course);
-                }
-                System.out.println("Ok successfully added now what you wanna do ?");
-                System.out.print("back  " + "start");
-                String option1 = scanner.next();
-                if (option1.equals("back")) {
-                    adminChoose();
-                }
-                if (option1.equals("start")) {
-                    welcome();
-                }
+            if (option1.equals("2")) {
+                adminAddOrDetails(faculty);
             }
+        }
+    }
 
-            if (course1.equals("Chemistry")) {
-                System.out.print("courseName : ");
-                String courseName = scanner.next();
-                System.out.print("masterName : ");
-                String masterName = scanner.next();
-                System.out.print("code : ");
-                int code = scanner.nextInt();
-                System.out.print("capacity : ");
-                int capacity = scanner.nextInt();
-                System.out.print("unit : ");
-                int unit = scanner.nextInt();
-                System.out.print("classDay : ");
-                String classDay = scanner.next();
-                System.out.print("classStart : ");
-                double classStart = scanner.nextDouble();
-                System.out.print("classFinish : ");
-                double classFinish = scanner.nextDouble();
-                System.out.print("examDay : ");
-                String examDay = scanner.next();
-                System.out.print("examStart : ");
-                double examStart = scanner.nextDouble();
-                System.out.print("examFinish : ");
-                double examFinish = scanner.nextDouble();
-                System.out.print("general : ");
-                boolean general = scanner.nextBoolean();
-                if (general) {
-                    generalCourse course = new generalCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    Chemistry.add(course);
-                } else {
-                    specializedCourse course = new specializedCourse(
-                            courseName
-                            , masterName,
-                            code, capacity, unit, classDay,
-                            classStart, classFinish, examDay,
-                            examStart, examFinish);
-                    Chemistry.add(course);
-                }
-                System.out.println("Ok successfully added now what you wanna do ?");
-                System.out.println("back " + "finish");
-                String option1 = scanner.next();
-                if (option1.equals("back")) {
-                    adminChoose();
-                }
-                if (option1.equals("finish")) {
-                }
-            }
-        } else if (addOrReview.equals("details")) {
-            adminReviewDetails(course1);
+    public void adminReviewDetails(ArrayList<course> faculty) {
+        System.out.println("which course do you want to select : ");
+        for (int i = 0; i < faculty.size(); i++) {
+            System.out.print(faculty.get(i).courseName + " ");
+        }
+        System.out.println();
 
-        } else if (addOrReview.equals("back")) {
-            adminChoose();
+    }
+
+
+    //student
+
+    public void getStudentId() {
+        System.out.println("Please enter your id : ");
+        String id = scanner.next();
+        if(id.equals("back")){
+            welcome();
+        }else{
+            int a = 0;
+            for(int i = 0 ; i < id.length() ; i++){
+                a = (a * 10) + ((int)id.charAt(i) - '0');
+            }
+            studentChoose(a);
+        }
+
+    }
+
+    public void studentChoose(int studentId){
+        System.out.println("welcome " + studentId + " please choose in below options :");
+        System.out.println("1.registered courses list ");
+        System.out.println("2.presented courses");
+        System.out.println("3.back");
+        String regOrPer = scanner.next();
+
+        if(regOrPer.equals("1")){
+        }
+
+        if(regOrPer.equals("2")){
+            presentedCourses(studentId);
+        }
+        if (regOrPer.equals("3")){
+            getStudentId();
+        }
+    }
+
+    public void presentedCourses(int studentId){
+        System.out.println("choose which faculty :");
+        System.out.println("1.computerScience " + "2.Physic " + "3.languageStructure " + "4.Chemistry " +"5.back");
+        String faculty = scanner.next();
+        if (faculty.equals("computerScience") || faculty.equals("1")) {
+            printingInfo(computerScience);
+            studentRegister(computerScience, studentId);
+
+        } else if (faculty.equals("Physic") || faculty.equals("2")) {
+            printingInfo(Physic);
+            studentRegister(Physic, studentId);
+
+        } else if (faculty.equals("languageStructure") || faculty.equals("3")) {
+            printingInfo(languageStructure);
+            studentRegister(languageStructure, studentId);
+
+        } else if (faculty.equals("Chemistry") || faculty.equals("4")) {
+            printingInfo(Chemistry);
+            studentRegister(Chemistry, studentId);
+
+        } else if (faculty.equals("back") || faculty.equals("5")) {
+            studentChoose(studentId);
         } else {
-            System.out.println("Sorry thats not a command");
-            adminAddOrDetails(course1);
+            System.out.println("Sorry there is no such course ");
         }
     }
 
-    public void adminReviewDetails(String course1) {
-        System.out.println("which course do you want to change : ");
-        if (course1.equals("computerScience")) {
-            for (int i = 0; i < computerScience.size(); i++) {
-                System.out.print(computerScience.get(i).courseName + " ");
+    public void studentRegister(ArrayList<course> faculty, int studentId){
+        int unitsNumber = 0, generalNo = 0 , i1 = 0;
+        ArrayList<course> helper1 = new ArrayList<>();
+        System.out.println("Enter code of course you want to take :");
+        String courseCodeOrBack = scanner.next();
+        int courseCode = 0;
+        for(int i = 0 ; i < courseCodeOrBack.length() ; i++){
+            courseCode = (courseCode * 10) + ((int)courseCodeOrBack.charAt(i) - '0');
+        }
+
+        if(courseCodeOrBack.equals("back")){
+            presentedCourses(studentId);
+        }
+
+        for(int i = 0 ; i < faculty.size() ; i++){
+            if(courseCode == faculty.get(i).code){
+                i1 = i;
+                break ;
+            }
+            if(i == faculty.size() - 1){
+                System.out.println("Sorry there is no such course please try again");
+                studentRegister(faculty, studentId);
             }
         }
-        else if (course1.equals("Physic")) {
-            for (int i = 0; i < Physic.size(); i++) {
-                System.out.print(Physic.get(i).courseName + " ");
+        for(int i = 0 ; i < registeredStudentsNo.size() ; i++){
+            if(registeredStudentsNo.get(i) == studentId){
+                helper1.add(registeredStudentsCourses.get(i));
+                unitsNumber += registeredStudentsCourses.get(i).unit;
+                if(registeredStudentsCourses.get(i) instanceof generalCourse){
+                    generalNo += registeredStudentsCourses.get(i).unit;
+                }
             }
         }
-        else if (course1.equals("languageStructure")) {
-            for (int i = 0; i < languageStructure.size(); i++) {
-                System.out.print(languageStructure.get(i).courseName + " ");
+
+        if(faculty.get(i1).capacity == 0){
+            System.out.println("Sorry course completely full");
+            studentRegister(faculty, studentId);
+        }
+
+        if(unitsNumber + faculty.get(i1).unit > 20){
+            System.out.println("Sorry your units numbers exceed out of 20");
+            studentRegister(faculty, studentId);
+        }
+        if(faculty.get(i1) instanceof generalCourse) {
+            if (generalNo + faculty.get(i1).unit > 5) {
+                System.out.println("Sorry your generalUnits numbers exceed out of 5");
+                studentRegister(faculty, studentId);
             }
         }
-        else if (course1.equals("Chemistry")) {
-            for (int i = 0; i < Chemistry.size(); i++) {
-                System.out.print(Chemistry.get(i).courseName + " ");
+        for(int i = 0 ; i < registeredStudentsNo.size() ; i++){
+            if(faculty.get(i1).classDay.equals(registeredStudentsCourses.get(i).classDay) &&
+                    checkOverlap(faculty.get(i1).classStart, faculty.get(i1).classFinish
+            , registeredStudentsCourses.get(i).classStart,
+                    registeredStudentsCourses.get(i).classFinish)){
+                System.out.println("Sorry this course has interference " +
+                        "with your other courses");
+                studentRegister(faculty, studentId);
+            }
+            if(faculty.get(i1).examDay.equals(registeredStudentsCourses.get(i).classDay) &&
+                    checkOverlap(faculty.get(i1).examStart, faculty.get(i1).examFinish
+                    , registeredStudentsCourses.get(i).examStart,
+                    registeredStudentsCourses.get(i).examFinish)){
+                System.out.println("Sorry this exam has interference " +
+                        "with your other courses");
+                studentRegister(faculty, studentId);
             }
         }
-        String course = scanner.next();
+        registeredStudentsNo.add(studentId);
+        registeredStudentsCourses.add(faculty.get(i1));
+        faculty.get(i1).capacity --;
+        faculty.get(i1).registered ++;
+        System.out.println("Ok successfully added to your courses now what you wanna do ?");
+        System.out.println("1.finish  " + "2.back");
+        String option1 = scanner.next();
+        if (option1.equals("1")) {
+            welcome();
+        }
+        if (option1.equals("2")) {
+            studentRegister(faculty, studentId);
+        }
+
     }
+
+    public void printingInfo(ArrayList<course> faculty ){
+        for (int i = 0; i < faculty.size(); i++) {
+            System.out.print("code : " + faculty.get(i).code + " /");
+            System.out.print("unit : " + faculty.get(i).unit + " /");
+            System.out.print("courseName : " + faculty.get(i).courseName + " /");
+            System.out.print("capacity :" + faculty.get(i).capacity + " /");
+            System.out.print("registered : " + faculty.get(i).registered + " /");
+            System.out.print("master : " + faculty.get(i).masterName + " /");
+            System.out.print("exam : " +
+                    faculty.get(i).examDay + " " +
+                    faculty.get(i).examStart + " to " +
+                    faculty.get(i).examFinish + " /");
+            System.out.print("Weekly Schedule : " +
+                    faculty.get(i).classDay + " " +
+                    faculty.get(i).classStart + " to " +
+                    faculty.get(i).classFinish + " ");
+            if(faculty.get(i) instanceof generalCourse) {
+                System.out.println("general : " + "true");
+            }else{
+                System.out.println("general : " + "false");
+            }
+            System.out.println();
+
+
+        }
+    }
+
+    public boolean checkOverlap(double x1, double y1, double x2, double y2){
+        if((x1 >= x2 && x1 < y2) || (y1 > x2 && y1 <= y2)){
+            return true;
+        }
+        return false;
+    }
+
 }
 
